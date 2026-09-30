@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Personal Finance Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="header-content">
+
+        <div>
+
+            <h1>Personal Finance Dashboard</h1>
+
+            <p>
+                Track your income, expenses and savings
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- ================= SUMMARY ================= -->
+
+<section class="summary-grid">
+
+
+    <div class="summary-card income">
+
+        <div class="card-title">
+            Total Income
+        </div>
+
+        <div
+            class="card-value"
+            id="totalIncome"
+        >
+            ₹0.00
+        </div>
+
+    </div>
+
+
+
+    <div class="summary-card expense">
+
+        <div class="card-title">
+            Total Expenses
+        </div>
+
+        <div
+            class="card-value"
+            id="totalExpenses"
+        >
+            ₹0.00
+        </div>
+
+    </div>
+
+
+
+    <div class="summary-card savings">
+
+        <div class="card-title">
+            Current Savings
+        </div>
+
+        <div
+            class="card-value"
+            id="currentSavings"
+        >
+            ₹0.00
+        </div>
+
+    </div>
+
+
+
+    <div class="summary-card count">
+
+        <div class="card-title">
+            Transactions
+        </div>
+
+        <div
+            class="card-value"
+            id="transactionCount"
+        >
+            0
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= ADD TRANSACTION ================= -->
+
+<section class="panel">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Add Transaction</h2>
+
+            <p>
+                Record your income or expenses
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <form id="transactionForm">
+
+
+        <div class="form-grid">
+
+
+            <!-- TYPE -->
+
+            <div class="form-group">
+
+                <label for="type">
+                    Transaction Type
+                </label>
+
+                <select id="type" required>
+
+                    <option value="">
+                        Select Type
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label for="category">
+                    Category
+                </label>
+
+                <select id="category" required>
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="Salary">
+                        Salary
+                    </option>
+
+                    <option value="Freelance">
+                        Freelance
+                    </option>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Transport">
+                        Transport
+                    </option>
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+                    <option value="Bills">
+                        Bills
+                    </option>
+
+                    <option value="Entertainment">
+                        Entertainment
+                    </option>
+
+                    <option value="Education">
+                        Education
+                    </option>
+
+                    <option value="Health">
+                        Health
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- AMOUNT -->
+
+            <div class="form-group">
+
+                <label for="amount">
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    min="1"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- DATE -->
+
+            <div class="form-group">
+
+                <label for="date">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group full-width">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Example: Monthly salary or grocery shopping"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            type="submit"
+            id="transactionButton"
+            class="primary-btn"
+        >
+            Add Transaction
+        </button>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- ================= SAVINGS GOAL ================= -->
+
+<section class="panel">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Savings Goals</h2>
+
+            <p>
+                Set and monitor your financial goals
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <form id="goalForm">
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label for="goalName">
+                    Goal Name
+                </label>
+
+                <input
+                    type="text"
+                    id="goalName"
+                    placeholder="Example: New Laptop"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="targetAmount">
+                    Target Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="targetAmount"
+                    min="1"
+                    placeholder="60000"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="currentAmount">
+                    Current Savings
+                </label>
+
+                <input
+                    type="number"
+                    id="currentAmount"
+                    min="0"
+                    placeholder="10000"
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="deadline">
+                    Deadline
+                </label>
+
+                <input
+                    type="date"
+                    id="deadline"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="primary-btn"
+        >
+            Create Savings Goal
+        </button>
+
+
+    </form>
+
+
+
+    <div id="goalsContainer">
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= CHARTS ================= -->
+
+<section class="charts-grid">
+
+
+    <div class="panel chart-panel">
+
+        <h2>Expenses by Category</h2>
+
+        <canvas id="categoryChart"></canvas>
+
+    </div>
+
+
+
+    <div class="panel chart-panel">
+
+        <h2>Income vs Expenses</h2>
+
+        <canvas id="incomeExpenseChart"></canvas>
+
+    </div>
+
+
+
+    <div class="panel chart-panel full-chart">
+
+        <h2>Monthly Expense Trend</h2>
+
+        <canvas id="monthlyChart"></canvas>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= TRANSACTIONS ================= -->
+
+<section class="panel">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Transaction History</h2>
+
+            <p>
+                All your recorded transactions
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Type</th>
+
+                    <th>Category</th>
+
+                    <th>Description</th>
+
+                    <th>Amount</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="transactionTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
